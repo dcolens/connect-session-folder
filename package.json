@@ -1,0 +1,27 @@
+{
+  "name": "connect-session-folder",
+  "version": "0.0.3",
+  "description": "File Session Store for Connect Middleware",
+  "author": "Didier Colens <dcolens@gmail.com> (http://github.com/dcolens/)",
+  "contributors": [
+    "Didier Colens <dcolens@gmail.com> (http://github.com/dcolens/)",
+    "Alexander Veenendaal <alex@opendoorgonorth.com> (http://github.com/dcolens/)",
+    "André König <> (https://github.com/akoenig)"
+  ],
+  "bugs": { "web" : "http://github.com/dcolens/connect-session-folder/issues" },
+  "engines": {
+    "node" : ">=0.8.11"
+  },
+  "directories": {
+    "lib" : "lib"
+  },
+  "main": "./lib/connect-session-folder",
+  "dependencies": {
+    "connect": ">=2.7.1"
+    "wrench": "*"
+  },
+  "repository": {
+    "type":"git",
+    "url":"http://github.com/dcolens/connect-session-folder.git"
+  }
+}
