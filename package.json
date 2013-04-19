@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "connect": "~2.7.6"
-  }
+  },
   "repository": {
     "type":"git",
     "url":"http://github.com/dcolens/connect-session-folder.git"
