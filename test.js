@@ -19,6 +19,7 @@ var store = new FMStore({parentFolder: parentFolder, permission: permission});
 
 store.on('connect', function(){
 
+  console.log('store up');
   assert.ok(fs.existsSync(parentFolder), 'parentFolder not created');
   var stat = fs.statSync(parentFolder);
   assert.equal(parseInt(stat.mode.toString(8), 10), '4'+permission, 'permission should be '+permission+' for '+parentFolder);
@@ -26,10 +27,11 @@ store.on('connect', function(){
   // #set()
   store.set('123', { cookie: { maxAge: 2000 }, name: 'dc' }, function(err){
     assert.ok(!err, '#set() got an error');
+    console.log('session created');
+    store.checkP({sid: '123', otherStuff:'lalala', user: 'testuser'}).then(function(folder) {
 
-    store.checkP({sid: '123', otherStuff:'lalala'}).then(function(folder) {
-
-      assert.ok(!!folder, 'folder name not returned');
+      console.log('folder created');
+      assert.ok((folder==='testuser'), 'folder name not returned');
       assert.ok(fs.existsSync(parentFolder+'/'+folder), 'session folder not created');
       assert.ok(fs.existsSync(parentFolder+'/'+folder+'/session-info'), 'session-info file not created');
 
@@ -42,7 +44,7 @@ store.on('connect', function(){
 
         // #set null
         store.set('123', { cookie: { maxAge: 2000 }, name: 'dc' }, function(){
-          store.destroy('123', function(e){
+          store.destroy('123', 'testuser', function(e){
             assert.ok(!e, "destory should succeed");
             fs.rmdirSync(parentFolder);
             assert.ok(!fs.existsSync(parentFolder), parentFolder+ " should not exist");
